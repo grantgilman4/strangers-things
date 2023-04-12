@@ -1,7 +1,11 @@
 import React from "react";
-import { ReactDOM } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { Main } from "./components";
 
-const domNode = document.querySelector('#root');
-const root = React.createRoot(domNode);
-root.render(<></>)
+
+createRoot(document.querySelector('#root')).render(
+    <BrowserRouter>
+        <Main />
+    </BrowserRouter>
+ );
