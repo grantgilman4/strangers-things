@@ -1,31 +1,32 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { deletePost } from '../api/crud'
-const Profile = ({ user, posts, setPosts, token, active}) => {
+const Profile = ({ user, token, userPosts, setUserPosts}) => {
    const navigate = useNavigate();
-
+console.log("this is user", user)
    return(
       <>
       <h2>User Profile</h2>
       <button onClick={() => { navigate('/newpost')}}>Create New Post</button> 
 
-      {user.data.posts ? (
+      {userPosts.length ? (
          <>
-         {user.data.posts.map((post) => {
+         {userPosts.map((post) => {
             return (
               <article key={post._id}>
                 <h4>{post.title}</h4>
-                <p>{post.body}</p>
-                <p>Author: {post.author.username}</p>
+                <p>{post.description}</p>
+                <p>Author: {user.username}</p>
                 <button onClick={ async () => {
-                const deletedPost = await deletePost(post._id, token)
-                setPosts([...posts.filter(post => post._id !== deletedPost.id && !active)])
-               
+                const deletedPostId = post._id
+                await deletePost(post._id, token)
+                setUserPosts(userPosts.filter(post => post._id !== deletedPostId))
+               console.log(deletedPost)
                }}>Delete Post</button>
               </article>
             );
           })}
-         {user.data.messages.map((message) => {
+         {/* {user.messages.map((message) => {
             return (
               <article key={message._id}>
                 <h4>{message.post.title}</h4>
@@ -33,8 +34,8 @@ const Profile = ({ user, posts, setPosts, token, active}) => {
                 <p>Author: {message.fromUser._id}</p>
               </article>
             );
-          })}
-      </>):(<h2>loading...</h2>) }
+          })} */}
+      </>):(<h2>No Posts Yet...</h2>) }
    </>)
 }
 

@@ -11,9 +11,11 @@ import {
 import { Routes, Route } from "react-router-dom";
 import { fetchPosts, myData } from "../api/crud";
 
+
 const Main = () => {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState({});
+  const [userPosts, setUserPosts] = useState([])
   const [token, setToken] = useState(localStorage.token);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -57,6 +59,7 @@ const Main = () => {
               user={user}
               setUser={setUser}
               setIsLoggedIn={setIsLoggedIn}
+              setUserPosts={setUserPosts}
             />
           }
         />
@@ -74,6 +77,8 @@ const Main = () => {
               setPosts={setPosts}
               user={user}
               token={token}
+              userPosts={userPosts}
+              setUserPosts= {setUserPosts}
             />
           }
         />

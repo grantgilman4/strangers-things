@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import "./Navbar.css"
 
 const Navbar = ({ setUser, setToken, setIsLoggedIn, isLoggedIn }) => {
   const navigate = useNavigate();
