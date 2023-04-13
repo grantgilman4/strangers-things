@@ -10,7 +10,7 @@ const Navbar = ({ setUser, setToken, setIsLoggedIn, isLoggedIn }) => {
           <>
             <NavLink to="/">Home</NavLink>
             <NavLink to="/posts">Posts</NavLink>
-            <NavLink to="/messages">Messages</NavLink>
+            <NavLink to="/profile">Profile</NavLink>
             <button
               onClick={() => {
                 setIsLoggedIn(false);

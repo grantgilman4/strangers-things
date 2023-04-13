@@ -10,11 +10,11 @@ export const loginUser = async (userObj) => {
       },
       body: JSON.stringify(userObj),
     });
-    const { success, error, user: data } = await response.json();
+    const {user: data } = await response.json();
 
     if (success) {
       const { token, message } = data;
-      const { success, error, user } = await myData(token);
+      const {user } = await myData(token);
       if (user) {
         localStorage.setItem("token", token);
         return { token, message, user };
@@ -197,14 +197,14 @@ const fakeUserData = {
 
 export const myData = async (token) => {
   try {
-    // const response = await fetch(`${BASE}/users/me`, {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Bearer ${token}`
-    //   },
-    // });
-    // const { success, error, data } = await response.json();
-    return fakeUserData;
+    const response = await fetch(`${BASE}/users/me`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    });
+    const { success, error, data } = await response.json();
+    return data;
   } catch (err) {
     console.error(err);
   }
@@ -226,8 +226,7 @@ export const registerUser = async (userAuth) => {
       result.userResult = userResult;
       return result;
     }
-    // You can log ▲▲▲ the result
-    // here ▼▼▼ to view the json object before returning it
+
     console.log(result);
     return result;
   } catch (err) {
@@ -300,24 +299,24 @@ export const makePost = async (newPost, token) => {
 //   }
 // }
 
-//   const postMessage = async () => {
-//     try {
-//       const response = await fetch(`${BASE_URL}/posts/5e8929ddd439160017553e06/messages`, {
-//         method: "POST",
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'Authorization': `Bearer ${TOKEN_STRING_HERE}`
-//         },
-//         body: JSON.stringify({
-//           message: {
-//             content: "Do you still have this?  Would you take $10 less?"
-//           }
-//         })
-//       });
-//       const result = await response.json();
-//       console.log(result);
-//       return result
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   }
+  const postMessage = async () => {
+    try {
+      const response = await fetch(`${BASE}/posts/5e8929ddd439160017553e06/messages`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${TOKEN_STRING_HERE}`
+        },
+        body: JSON.stringify({
+          message: {
+            content: "Do you still have this?  Would you take $10 less?"
+          }
+        })
+      });
+      const result = await response.json();
+      console.log(result);
+      return result
+    } catch (err) {
+      console.error(err);
+    }
+  }
