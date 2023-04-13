@@ -1,9 +1,14 @@
 import React from "react";
+import {useNavigate} from "react-router-dom";
 //import { makePost, deletePost} from '../api/crud'
 
 const Posts = ({ posts, setPosts, isLoggedIn, user }) => {
-  return (
+ const navigate = useNavigate(); 
+  return (  
     <>
+    <button onClick={() => { 
+    navigate('/newpost')
+    }}>Create New Post</button> 
       {posts ? (
         <>
           {posts.map((post) => {

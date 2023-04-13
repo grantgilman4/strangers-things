@@ -1,7 +1,7 @@
 import React from "react";
 import { myData } from '../api/crud'
 
-const Messages = () => {
+const Profile = () => {
    const getUserProfile = async () => {
       const result = await myData();
       //console.log(result)
@@ -13,4 +13,4 @@ const Messages = () => {
 }
 
 
-export default Messages
+export default Profile

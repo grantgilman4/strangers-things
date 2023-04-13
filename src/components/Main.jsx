@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Login, Posts, Messages, Welcome, Register } from ".";
+import { Navbar, Login, Posts, Profile, Welcome, Register, CreatePost } from ".";
 import { Routes, Route } from "react-router-dom";
 import { fetchPosts, myData } from "../api/crud";
 
@@ -64,7 +64,8 @@ const Main = () => {
           path="/posts"
           element={<Posts posts={posts} setPosts={setPosts} isLoggedIn={isLoggedIn}/>}
         />
-        <Route path="/messages" element={<Messages />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/newpost" element={<CreatePost token={token} posts={posts} setPosts={setPosts}/>} />
         <Route
           path="/register"
           element={
