@@ -6,6 +6,7 @@ const Navbar = ({ setUser, setToken, setIsLoggedIn, isLoggedIn }) => {
   return (
     <>
       <nav>
+        <h1>Strangers' Things</h1>
         {isLoggedIn ? (
           <>
             <NavLink to="/">Home</NavLink>
