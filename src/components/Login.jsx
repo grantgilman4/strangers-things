@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../api/crud";
+import { loginUser, myData } from "../api/crud";
 
 const Login = ({ setIsLoggedIn, token, setToken, user, setUser}) => {
     const [username, setUsername] = useState('');
@@ -10,17 +10,20 @@ const Login = ({ setIsLoggedIn, token, setToken, user, setUser}) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const userAuth = {user: {username: username, password: password}}
-        const { data, userResult } = await loginUser(userAuth)
-
+        const userObj = {user: {username: username, password: password}}
+        const { data } = await loginUser(userObj)
+        const currentUser = await myData(data.token);
+        
         if(data.token) {
             setToken(data.token);
-            setUser({userResult});
+            setUser(currentUser);
             setIsLoggedIn(true);
+            localStorage.setItem("token", data.token);
+            
         }
         setUsername('');
         setPassword('');
-        navigate('/posts')
+        navigate('/profile')
 
     }
 

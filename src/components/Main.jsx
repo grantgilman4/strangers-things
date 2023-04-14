@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Login, Posts, Profile, Welcome, Register, CreatePost } from ".";
+import {
+  Navbar,
+  Login,
+  Posts,
+  Profile,
+  Welcome,
+  Register,
+  CreatePost,
+} from ".";
 import { Routes, Route } from "react-router-dom";
 import { fetchPosts, myData } from "../api/crud";
 
@@ -8,27 +16,18 @@ const Main = () => {
   const [user, setUser] = useState({});
   const [token, setToken] = useState(localStorage.token);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  //const [messages, setMessages] = useState([]);
+
+  // const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     const getPosts = async () => {
-      const { posts } = await fetchPosts();
+      const posts = await fetchPosts();
       console.log(posts);
       setPosts(posts);
     };
     getPosts();
   }, []);
 
-  // useEffect(() => {
-  //     const fetchUser = async () => {
-  //         const fetchedUser = myData(token);
-  //         setUser(fetchedUser.user);
-  //         if(token){
-  //             myData(token)
-  //         }
-  //     }
-  //     fetchUser();
-  // }, [token])
   return (
     <>
       <Navbar
@@ -57,15 +56,33 @@ const Main = () => {
               setToken={setToken}
               user={user}
               setUser={setUser}
+              setIsLoggedIn={setIsLoggedIn}
             />
           }
         />
         <Route
           path="/posts"
-          element={<Posts posts={posts} setPosts={setPosts} isLoggedIn={isLoggedIn}/>}
+          element={
+            <Posts posts={posts} setPosts={setPosts} isLoggedIn={isLoggedIn} />
+          }
         />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/newpost" element={<CreatePost token={token} posts={posts} setPosts={setPosts}/>} />
+        <Route
+          path="/profile"
+          element={
+            <Profile
+              posts={posts}
+              setPosts={setPosts}
+              user={user}
+              token={token}
+            />
+          }
+        />
+        <Route
+          path="/newpost"
+          element={
+            <CreatePost token={token} posts={posts} setPosts={setPosts} />
+          }
+        />
         <Route
           path="/register"
           element={
