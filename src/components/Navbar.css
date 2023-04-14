@@ -1,0 +1,13 @@
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: lightgrey;
+    align-items: center;
+}
+h1 {
+    color:blue;
+   font-size: 30px; 
+}
+body{
+    margin:0;
+}

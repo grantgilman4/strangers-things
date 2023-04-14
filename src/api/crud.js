@@ -88,6 +88,7 @@ export const makePost = async (newPost, token) => {
 export const deletePost = async (postId, token) => {
   try {
     //if user is NOT author, return
+    
     const response = await fetch(`${BASE}/posts/${postId}`, {
       method: "DELETE",
       headers: {
@@ -96,7 +97,7 @@ export const deletePost = async (postId, token) => {
       }
     });
     const result = await response.json();
-    console.log(result);
+   
     return result
   } catch (err) {
     console.error(err);
