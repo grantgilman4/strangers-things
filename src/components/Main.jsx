@@ -9,17 +9,16 @@ import {
   CreatePost,
 } from ".";
 import { Routes, Route } from "react-router-dom";
-import { fetchPosts, myData } from "../api/crud";
+import { fetchPosts } from "../api/crud";
 
 
 const Main = () => {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState({});
   const [userPosts, setUserPosts] = useState([])
+  const [userMessages, setUserMessages] = useState([])
   const [token, setToken] = useState(localStorage.token);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -60,6 +59,7 @@ const Main = () => {
               setUser={setUser}
               setIsLoggedIn={setIsLoggedIn}
               setUserPosts={setUserPosts}
+              setUserMessages={setUserMessages}
             />
           }
         />
@@ -78,14 +78,16 @@ const Main = () => {
               user={user}
               token={token}
               userPosts={userPosts}
-              setUserPosts= {setUserPosts}
+              setUserPosts={setUserPosts}
+              userMessages={userMessages}
+              setUserMessages={setUserMessages}
             />
           }
         />
         <Route
           path="/newpost"
           element={
-            <CreatePost token={token} posts={posts} setPosts={setPosts} />
+            <CreatePost token={token} posts={posts} setPosts={setPosts} user={user} setUserPosts={setUserPosts} userPosts={userPosts}/>
           }
         />
         <Route

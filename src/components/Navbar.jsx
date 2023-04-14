@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import "./Navbar.css"
+import "./styles.css"
 
 const Navbar = ({ setUser, setToken, setIsLoggedIn, isLoggedIn }) => {
   const navigate = useNavigate();
@@ -10,8 +10,7 @@ const Navbar = ({ setUser, setToken, setIsLoggedIn, isLoggedIn }) => {
         <h1>Strangers' Things</h1>
         {isLoggedIn ? (
           <>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/posts">Posts</NavLink>
+            <NavLink to="/posts">Browse Posts</NavLink>
             <NavLink to="/profile">Profile</NavLink>
             <button
               onClick={() => {

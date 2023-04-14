@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUser, myData } from "../api/crud";
 
-const Register = ({isLoggedIn, setIsLoggedIn, token, setToken, user, setUser}) => {
+const Register = ({setIsLoggedIn, setToken, setUser}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -30,9 +30,9 @@ const Register = ({isLoggedIn, setIsLoggedIn, token, setToken, user, setUser}) =
     return (
         <>
         <form onSubmit={handleSubmit}>
-            <h2>Register as a new user below!</h2>
-            <input type='text' placeholder='username' value={username} onChange={(event) => setUsername(event.target.value)}/>
-            <input type='text' placeholder='password' value={password} onChange={(event) => setPassword(event.target.value)}/>
+            <h2>Register a New User</h2>
+            <input required type='text' placeholder='username' value={username} onChange={(event) => setUsername(event.target.value)}/>
+            <input required type='text' placeholder='password' value={password} onChange={(event) => setPassword(event.target.value)}/>
             <button type='submit'>Register & Login</button>
         </form>
         </>

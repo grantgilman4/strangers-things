@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser, myData } from "../api/crud";
+import './styles.css'
 
-const Login = ({ setIsLoggedIn, token, setToken, user, setUser, setUserPosts}) => {
+const Login = ({ setIsLoggedIn, setToken, setUser, setUserPosts, setUserMessages}) => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ const Login = ({ setIsLoggedIn, token, setToken, user, setUser, setUserPosts}) =
             setToken(data.token);
                 setUser({_id, username});
                 setUserPosts(posts)
+                setUserMessages(messages)
             setIsLoggedIn(true);
             localStorage.setItem("token", data.token);
             
@@ -31,8 +33,9 @@ const Login = ({ setIsLoggedIn, token, setToken, user, setUser, setUserPosts}) =
     return (
         <>
         <form onSubmit={handleSubmit}>
-            <input type='text' placeholder='username' value={userName} onChange={(event) => setUserName(event.target.value)}/>
-            <input type='text' placeholder='password' value={password} onChange={(event) => setPassword(event.target.value)}/>
+        <h2>Login</h2>
+            <input required type='text' placeholder='username' value={userName} onChange={(event) => setUserName(event.target.value)}/>
+            <input required type='text' placeholder='password' value={password} onChange={(event) => setPassword(event.target.value)}/>
             <button type='submit'>Login</button>
         </form>
         </>
