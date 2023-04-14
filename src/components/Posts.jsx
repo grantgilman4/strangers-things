@@ -1,14 +1,13 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
-//import { makePost, deletePost} from '../api/crud'
+import "./styles.css"
+import Search from "./Search"
 
-const Posts = ({ posts }) => {
+const Posts = ({ posts, setPosts }) => {
 
- const navigate = useNavigate();
-  
   return (  
     <>
-      <h2>Posts</h2>
+      <h2> All Posts</h2>
+      <Search posts={posts} setPosts={setPosts} />
       {posts ? (
         <>
           {posts.map((post) => {
@@ -16,6 +15,7 @@ const Posts = ({ posts }) => {
               <article key={post._id}>
                 <h4>{post.title}</h4>
                 <p>{post.description}</p>
+                <p className="price">{post.price}</p>
                 <p>Author: {post.author.username}</p>
               </article>
             );
